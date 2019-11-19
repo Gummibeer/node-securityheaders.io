@@ -1,19 +1,19 @@
 const axios = require('axios');
 
 /**
- * @param {string} domain
+ * @param {string} url
  * @param {boolean} [followRedirects=true]
  * @param {boolean} [hide=false]
  *
  * @return string
  */
-const buildUrl = function (domain, followRedirects, hide) {
+const buildApiUrl = function (url, followRedirects, hide) {
     followRedirects = followRedirects === undefined ? true : followRedirects;
     hide = hide === undefined ? false : hide;
 
-    const url = new URL('https://securityheaders.io');
+    const apiUrl = new URL('https://securityheaders.io');
     const query = new URLSearchParams();
-    query.append('q', domain);
+    query.append('q', url);
 
     if (hide) {
         query.append('hide', 'on');
@@ -23,24 +23,25 @@ const buildUrl = function (domain, followRedirects, hide) {
         query.append('followRedirects', 'on');
     }
 
-    url.search = query.toString();
+    apiUrl.search = query.toString();
 
-    return url.toString();
+    return apiUrl.toString();
 };
 
 /**
- * @param {string} domain
+ * @param {string} url
  * @param {boolean} [followRedirects=true]
  * @param {boolean} [hide=false]
  */
-const securityheaders = function (domain, followRedirects, hide) {
+const securityheaders = function (url, followRedirects, hide) {
     return new Promise(function (resolve, reject) {
-        axios.get(buildUrl(domain, followRedirects, hide)).then(response => {
+        axios.get(buildApiUrl(url, followRedirects, hide)).then(response => {
             const grade = response.headers['x-grade'];
             const domain = (new URL((new URL(response.config.url)).searchParams.get('q'))).hostname;
 
             resolve({
                 link: response.config.url,
+                url: url,
                 domain: domain,
                 grade: grade,
             });

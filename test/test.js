@@ -35,6 +35,16 @@ describe('securityheaders', () => {
             }).catch(error => done(error));
         });
 
+        it('should return the tested url', done => {
+            securityheaders('https://google.com').then(result => {
+                expect(result).to.have.property('url');
+                expect(result.url).to.be.a('string');
+                expect(result.url).to.equal('https://google.com');
+
+                done();
+            }).catch(error => done(error));
+        });
+
         it('should return the link to HTML test page', done => {
             securityheaders('https://google.com').then(result => {
                 expect(result).to.have.property('link');
@@ -77,6 +87,16 @@ describe('securityheaders', () => {
                 expect(result).to.have.property('domain');
                 expect(result.domain).to.be.a('string');
                 expect(result.domain).to.equal('google.com');
+
+                done();
+            }).catch(error => done(error));
+        });
+
+        it('should return the tested url', done => {
+            securityheaders('https://google.com', true, true).then(result => {
+                expect(result).to.have.property('url');
+                expect(result.url).to.be.a('string');
+                expect(result.url).to.equal('https://google.com');
 
                 done();
             }).catch(error => done(error));
@@ -125,6 +145,16 @@ describe('securityheaders', () => {
                 expect(result).to.have.property('domain');
                 expect(result.domain).to.be.a('string');
                 expect(result.domain).to.equal('google.com');
+
+                done();
+            }).catch(error => done(error));
+        });
+
+        it('should return the tested url', done => {
+            securityheaders('https://google.com', false, false).then(result => {
+                expect(result).to.have.property('url');
+                expect(result.url).to.be.a('string');
+                expect(result.url).to.equal('https://google.com');
 
                 done();
             }).catch(error => done(error));

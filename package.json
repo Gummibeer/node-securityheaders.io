@@ -1,6 +1,6 @@
 {
     "name": "node-securityheaders.io",
-    "version": "1.0.0-beta.2",
+    "version": "1.0.0-beta.3",
     "description": "Query https://securityheaders.io grade in your node app.",
     "keywords": [
         "security",
