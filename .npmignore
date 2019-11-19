@@ -1,0 +1,9 @@
+/.idea/
+/node_modules/
+/test/
+
+/.npmignore
+/.gitignore
+/.gitignore
+/.eslintrc.js
+/.editorconfig
