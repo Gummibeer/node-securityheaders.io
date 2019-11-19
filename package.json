@@ -1,11 +1,11 @@
 {
-    "name": "securityheaders.io",
-    "version": "1.0.0-beta.1",
-    "description": "Query https://securityheaders.io grade.",
+    "name": "node-securityheaders.io",
+    "version": "1.0.0-beta.2",
+    "description": "Query https://securityheaders.io grade in your node app.",
     "main": "src/index.js",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Gummibeer/npm-securityheaders.io.git"
+        "url": "git+https://github.com/Gummibeer/node-securityheaders.io.git"
     },
     "scripts": {
         "test": "./node_modules/.bin/mocha",
@@ -14,9 +14,9 @@
     "author": "Tom Witkowski <dev.gummibeer@gmail.com> (https://gummibeer.de)",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/Gummibeer/npm-securityheaders.io/issues"
+        "url": "https://github.com/Gummibeer/node-securityheaders.io/issues"
     },
-    "homepage": "https://github.com/Gummibeer/npm-securityheaders.io#readme",
+    "homepage": "https://github.com/Gummibeer/node-securityheaders.io#readme",
     "dependencies": {
         "axios": "^0.19.0"
     },
