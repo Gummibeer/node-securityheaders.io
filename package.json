@@ -2,6 +2,12 @@
     "name": "node-securityheaders.io",
     "version": "1.0.0-beta.2",
     "description": "Query https://securityheaders.io grade in your node app.",
+    "keywords": [
+        "security",
+        "API",
+        "scan",
+        "test"
+    ],
     "main": "src/index.js",
     "repository": {
         "type": "git",
