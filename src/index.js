@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { JSDOM } = require('jsdom');
 
 /**
  * @param {string} url
@@ -38,12 +39,26 @@ const securityheaders = function (url, followRedirects, hide) {
         axios.get(buildApiUrl(url, followRedirects, hide)).then(response => {
             const grade = response.headers['x-grade'];
             const domain = (new URL((new URL(response.config.url)).searchParams.get('q'))).hostname;
+            const dom = new JSDOM(response.data);
+            const headers = {
+                missing: [],
+                present: [],
+            };
+
+            Array.from(dom.window.document.getElementById('main').querySelectorAll('.reportSection .reportBody table.reportTable tr.tableRow td.tableCell li.headerItem')).forEach(node => {
+                if (node.classList.contains('pill-green')) {
+                    headers.present.push(node.textContent.toLowerCase());
+                } else {
+                    headers.missing.push(node.textContent.toLowerCase());
+                }
+            });
 
             resolve({
                 link: response.config.url,
                 url: url,
                 domain: domain,
                 grade: grade,
+                headers: headers,
             });
         }).catch(error => reject(error));
     });
